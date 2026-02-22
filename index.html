@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for Salsa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ffb6c1;
+            --bg: #fff0f3;
+            --glass: rgba(255, 255, 255, 0.85);
+            --shadow: rgba(255, 77, 109, 0.3);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+            /* BG Premium Terupdate */
+            background: linear-gradient(45deg, #fff0f3, #ffe5ec, #fff0f3, #ffccd5);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            transition: background 1.5s ease;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(60px); z-index: 0; opacity: 0.6;
+            animation: move 12s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, var(--secondary) 0%, rgba(255,182,193,0) 70%); top: -15%; left: -10%; }
+        .orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, #ffccd5 0%, rgba(255,204,213,0) 70%); bottom: -15%; right: -10%; animation-delay: -3s; }
+
+        @keyframes move {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 50px) scale(1.1); }
+        }
+
+        #overlay {
+            position: fixed; inset: 0; 
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .cat-frame {
+            width: 160px; height: 160px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 15px 35px var(--shadow);
+            animation: morph 8s infinite alternate ease-in-out;
+            margin-bottom: 25px;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            100% { border-radius: 50% 50% 30% 70% / 50% 70% 70% 50%; }
+        }
+
+        #main-container {
+            position: relative; z-index: 5;
+            width: 90%; max-width: 400px;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 30px 20px;
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transform: scale(0.9); opacity: 0;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #main-container.active { transform: scale(1); opacity: 1; }
+
+        /* Container Stiker Realistis */
+        .sticker-container {
+            width: 150px; height: 150px;
+            margin: 0 auto 20px;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .sticker-img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            animation: wiggle 3s infinite ease-in-out;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            50% { transform: rotate(5deg) translateY(-10px); }
+        }
+
+        h1 { color: var(--primary); font-size: 22px; margin-bottom: 12px; font-weight: 700; }
+        p { color: #555; font-size: 15px; font-weight: 500; }
+
+        .btn-container {
+            margin-top: 25px; display: flex;
+            justify-content: center; align-items: center;
+            gap: 15px; min-height: 80px;
+        }
+
+        button {
+            padding: 12px 25px; font-size: 15px; border: none; border-radius: 50px;
+            cursor: pointer; font-weight: 700; font-family: 'Quicksand', sans-serif;
+            transition: all 0.2s;
+        }
+
+        #btn-ya { background: var(--primary); color: white; box-shadow: 0 8px 15px var(--shadow); z-index: 10; }
+        #btn-tidak { background: #fff; color: #888; border: 1px solid #eee; z-index: 999; }
+
+        .promise-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px; border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            text-align: left; margin: 15px 0;
+        }
+
+        .heart-particle { position: fixed; pointer-events: none; z-index: 1; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+        .hidden { display: none !important; }
+        .slide-out { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+        
+        @keyframes loveBoom {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(10); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div id="love-icon" style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); font-size:500px; z-index:9999; opacity:0; pointer-events:none;">❤️</div>
+
+    <div id="overlay">
+        <div class="cat-frame">
+            <img src="kucing.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Cat">
+        </div>
+        <h2 style="color: #333;">Special for Salsa ✨</h2>
+        <p>Ada pesan buat kamu di dalem...</p>
+        <button onclick="mulaiKuis()" id="btn-ya" style="padding: 15px 40px;">Buka Sekarang ❤️</button>
+    </div>
+
+    <div id="main-container" class="hidden">
+        <div class="sticker-container">
+            <img id="stiker-render" class="sticker-img" src="kucing2.jpg" alt="Sticker">
+        </div>
+        
+        <div id="content-wrapper">
+            <div id="step-1-content">
+                <h1>Mau nggak jadi pacarku?</h1>
+                <p>Jawaban kamu menentukan masa depan kita...</p>
+            </div>
+            
+            <div id="step-2-content" class="hidden">
+                <div class="promise-card">
+                    <p style="margin:0; color: var(--primary); font-weight: 700;">Janji 1:</p>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Wajib chat: "hallo cintaku salsa" tiap hari!</p>
+                </div>
+                <h1>Bisa kan, sayang? 🥺</h1>
+            </div>
+
+            <div id="step-3-content" class="hidden">
+                <div class="promise-card">
+                    <p style="margin:0; color: var(--primary); font-weight: 700;">Janji 2:</p>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Besok wajib mokel & ajak salsa makan enak!</p>
+                </div>
+                <h1>Janji ya buat yang ini? 😋</h1>
+            </div>
+            
+            <div id="final-text" class="hidden">
+                <h1 style="font-size: 50px;">🥰❤️</h1>
+                <h1>YAY! I LOVE YOU!</h1>
+                <p>Sampai ketemu besok sayangku!</p>
+            </div>
+        </div>
+
+        <div class="btn-container" id="container-tombol">
+            <button id="btn-ya" onclick="handleYa()">IYA! ❤️</button>
+            <button id="btn-tidak">NGGAK</button>
+        </div>
+    </div>
+
+    <script>
+        let step = 1;
+        const btnTidak = document.getElementById('btn-tidak');
+        const btnYa = document.getElementById('btn-ya');
+        const stikerImg = document.getElementById('stiker-render');
+
+        // URL Stiker Realistis (Mochi Cat)
+        const stikerStep1 = "kucing1.jpg";
+        const stikerStep2 = "kucing2.jpg";
+        const stikerStep3 = "kucing3.jpg";
+        const stikerFinal = "kucing4.jpg";
+
+        function mulaiKuis() {
+            document.getElementById('overlay').classList.add('slide-out');
+            setTimeout(() => {
+                const container = document.getElementById('main-container');
+                container.classList.remove('hidden');
+                setTimeout(() => container.classList.add('active'), 50);
+                startHearts(400);
+            }, 600);
+        }
+
+        function lariDong() {
+            btnTidak.style.position = "fixed";
+            const maxX = window.innerWidth - btnTidak.offsetWidth - 20;
+            const maxY = window.innerHeight - btnTidak.offsetHeight - 20;
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            btnTidak.style.left = randomX + 'px';
+            btnTidak.style.top = randomY + 'px';
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = btnTidak.getBoundingClientRect();
+            const distance = Math.sqrt(Math.pow(e.clientX - (rect.left + rect.width/2), 2) + Math.pow(e.clientY - (rect.top + rect.height/2), 2));
+            if (distance < 70) lariDong();
+        });
+
+        btnTidak.addEventListener('touchstart', (e) => { e.preventDefault(); lariDong(); });
+
+        function handleYa() {
+            const step1 = document.getElementById('step-1-content');
+            const step2 = document.getElementById('step-2-content');
+            const step3 = document.getElementById('step-3-content');
+            const final = document.getElementById('final-text');
+            const loveIcon = document.getElementById('love-icon');
+
+            btnTidak.style.position = "relative";
+            btnTidak.style.left = "auto";
+            btnTidak.style.top = "auto";
+
+            if (step === 1) {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                stikerImg.src = stikerStep2;
+                step = 2;
+            } else if (step === 2) {
+                step2.classList.add('hidden');
+                step3.classList.remove('hidden');
+                stikerImg.src = stikerStep3;
+                btnYa.innerHTML = "JANJI! ❤️";
+                step = 3;
+            } else {
+                loveIcon.style.animation = "loveBoom 1.5s forwards";
+                step3.classList.add('hidden');
+                final.classList.remove('hidden');
+                stikerImg.src = stikerFinal;
+                document.getElementById('container-tombol').classList.add('hidden');
+                document.body.style.background = "#ff4d6d";
+                startHearts(60);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = ['❤️','💖','✨'][Math.floor(Math.random() * 3)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function startHearts(speed) { setInterval(createHeart, speed); }
+    </script>
+</body>
+</html>
